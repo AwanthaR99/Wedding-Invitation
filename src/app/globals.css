@@ -1,26 +1,74 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --animate-fadeIn: fadeIn 1.2s ease-out forwards;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #fbf8f3;
+}
+
+/* ─── 1. REAL ROSE PETALS CSS SHAPE & ANIMATION ─── */
+@keyframes petalFall {
+  0% {
+    transform: translateY(-10vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(105vh) translateX(100px) rotate(450deg);
+    opacity: 0;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.animate-petal {
+  animation: petalFall linear infinite;
+}
+
+/* Real Soft Rose Petal look-alike using standard CSS borders */
+.rose-petal {
+  background: linear-gradient(135deg, #ffb3c1 0%, #6b1d2f 100%);
+  border-radius: 0 100% 70% 100%;
+  box-shadow: inset -2px -2px 6px rgba(0,0,0,0.15), 0 4px 8px rgba(0,0,0,0.05);
+}
+
+/* ─── 2. LUXURY BACKGROUND BACKGROUND MANDALA PATTERNS ─── */
+.luxury-pattern-bg {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  opacity: 0.04;
+  pointer-events: none;
+  border: 2px solid #4a3b32;
+  border-radius: 50%;
+}
+
+.luxury-pattern-bg::before {
+  content: '';
+  position: absolute;
+  inset: 20px;
+  border: 1px dashed #4a3b32;
+  border-radius: 50%;
+  transform: rotate(45deg);
+}
+
+.luxury-pattern-bg::after {
+  content: '';
+  position: absolute;
+  inset: 40px;
+  border: 2px double #4a3b32;
+  border-radius: 50%;
 }
